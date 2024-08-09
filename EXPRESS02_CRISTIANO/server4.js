@@ -26,5 +26,12 @@ app.get('/total_clientes',(req,res)=>{
 
 //rota3 - apresentar dados de um cliente específico
 app.get('/clientes/:id',(req,res)=>{
-    
+    const cliente = clientes.find(c =>c.id === parseInt(req.parmas.id));
+
+    //se o cliente não existe
+    if(!cliente) res.status(404).send("Cliente não encontrado!!!");
+
+    //se o cliennte existe, vamos apresentar uma frase de resposta
+    res.send(`O cliente é: ${cliente.nome}, telefone: ${cliente.telefone}, email: ${cliente.email}`)
+
 })
